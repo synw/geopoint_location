@@ -2,10 +2,10 @@ name: geopoint_location
 description: Handle real time location data for Geopoint
 homepage: https://github.com/synw/geopoint_location
 author: synw <ansterj@gmail.com>
-version: 0.1.0
+version: 0.2.0
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
   flutter:
@@ -13,6 +13,7 @@ dependencies:
   geopoint: ^0.2.3
   geolocator: ^5.0.1
   slugify2: ^0.2.1
+  pedantic: ^1.6.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
