@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   geopoint: ^0.3.0
-  geolocator: ^5.0.1
+  geolocator: ^5.1.0
   slugify2: ^0.2.1
   pedantic: ^1.6.0
 
