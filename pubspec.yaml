@@ -10,8 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  geopoint: ^0.3.0
-  geolocator: ^5.1.0
+  geopoint: ^0.4.0
+  geolocator: ^5.1.1+1
   slugify2: ^0.2.1
   pedantic: ^1.6.0
 
