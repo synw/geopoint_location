@@ -1,8 +1,8 @@
 name: geopoint_location
-description: Handle real time location data for Geopoint
+description: Handle real time location data for Geopoint. Provide structured data from Geolocator
 homepage: https://github.com/synw/geopoint_location
 author: synw <ansterj@gmail.com>
-version: 0.2.1
+version: 0.3.0
 
 environment:
   sdk: ">=2.2.2 <3.0.0"
