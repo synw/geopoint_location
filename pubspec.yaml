@@ -2,7 +2,7 @@ name: geopoint_location
 description: Handle real time location data for Geopoint. Provide structured data from Geolocator
 homepage: https://github.com/synw/geopoint_location
 author: synw <ansterj@gmail.com>
-version: 0.3.0
+version: 0.3.1
 
 environment:
   sdk: ">=2.2.2 <3.0.0"
@@ -10,8 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  geopoint: ^0.4.0
-  geolocator: ^5.1.1+1
+  geopoint: ^0.5.0
+  geolocator: ^5.1.3
   slugify2: ^0.2.1
   pedantic: ^1.6.0
 
