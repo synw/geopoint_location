@@ -1,5 +1,5 @@
 name: geopoint_location
-description: Handle real time location data for Geopoint. Provide structured data from Geolocator
+description: Handle real time location data. Get structured Geopoint data from Geolocator
 homepage: https://github.com/synw/geopoint_location
 author: synw <ansterj@gmail.com>
 version: 0.3.1
@@ -10,8 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  geopoint: ^0.5.0
-  geolocator: ^5.1.3
+  geopoint: ^0.7.0
+  geolocator: ^5.1.4+2
   slugify2: ^0.2.1
   pedantic: ^1.6.0
 
@@ -23,29 +23,23 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
 
 # The following section is specific to Flutter.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-
   # To add assets to your application, add an assets section, like this:
   # assets:
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
-
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
-
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
-
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
