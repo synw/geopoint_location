@@ -14,9 +14,12 @@ class _GeopointLocationPageState extends State<GeopointLocationPage> {
             const Padding(padding: const EdgeInsets.only(top: 15.0)),
             RaisedButton(
                 child: const Text("Get location point"),
-                onPressed: () => geoPointFromPosition(
-                            name: "Current position", withAddress: true)
+                onPressed: () => geoPointFromLocation(
+                            name: "Current position",
+                            verbose: true,
+                            withAddress: true)
                         .then((geoPoint) {
+                      print("Geopoint: $geoPoint");
                       setState(() => locationPoint = geoPoint);
                     })),
             const Padding(padding: const EdgeInsets.only(top: 15.0)),
