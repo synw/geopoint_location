@@ -2,25 +2,40 @@ import 'package:flutter/foundation.dart';
 import 'package:geopoint/geopoint.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:slugify2/slugify.dart';
-//import 'package:permission/permission.dart';
 
 var _slugify = Slugify();
-
-//Future<void> _checkPermission() async =>
-//    await Permission.getPermissionsStatus([PermissionName.Location]);
 
 /// Returns a [GeoPoint] from the current position
 /// taken from Geolocator
 Future<GeoPoint> geoPointFromLocation(
-        {String name,
-        bool withAddress = false,
-        LocationAccuracy locationAccuracy = LocationAccuracy.best,
-        bool verbose = false}) async =>
-    _geoPointFromPosition(
-        name: name,
-        withAddress: withAddress,
-        locationAccuracy: locationAccuracy,
-        verbose: verbose);
+    {bool withAddress = false,
+    String name = "Current position",
+    LocationAccuracy locationAccuracy = LocationAccuracy.best,
+    bool verbose = false}) async {
+  final position =
+      await Geolocator().getCurrentPosition(desiredAccuracy: locationAccuracy);
+  Placemark placemark;
+  if (withAddress == true) {
+    final placemarks = await Geolocator()
+        .placemarkFromCoordinates(position.latitude, position.longitude);
+    placemark = placemarks[0];
+  }
+  return _geoPointFromPosition(
+      name: name, position: position, placemark: placemark, verbose: verbose);
+}
+
+/// Returns a [GeoPoint] from a given position
+GeoPoint geoPointFromPositionSync(
+    {@required Position position,
+    String name = "Current position",
+    LocationAccuracy locationAccuracy = LocationAccuracy.best,
+    bool verbose = false}) {
+  if (verbose) {
+    print("Creating geopoint from position $position");
+  }
+  return _geoPointFromPosition(
+      name: name, position: position, placemark: null, verbose: verbose);
+}
 
 /// Returns a [GeoPoint] from a given position
 Future<GeoPoint> geoPointFromPosition(
@@ -32,31 +47,22 @@ Future<GeoPoint> geoPointFromPosition(
   if (verbose) {
     print("Creating geopoint from position $position");
   }
-  return await _geoPointFromPosition(
-      name: name,
-      position: position,
-      withAddress: withAddress,
-      locationAccuracy: locationAccuracy,
-      verbose: verbose);
-}
-
-Future<GeoPoint> _geoPointFromPosition(
-    {String name,
-    Position position,
-    bool withAddress = false,
-    LocationAccuracy locationAccuracy = LocationAccuracy.best,
-    bool verbose = false}) async {
-  //await _checkPermission();
-  name = name ?? "Current position";
-  GeoPoint geoPoint;
-  position ??=
-      await Geolocator().getCurrentPosition(desiredAccuracy: locationAccuracy);
   Placemark placemark;
   if (withAddress == true) {
-    List<Placemark> placemarks = await Geolocator()
+    final placemarks = await Geolocator()
         .placemarkFromCoordinates(position.latitude, position.longitude);
     placemark = placemarks[0];
   }
+  return _geoPointFromPosition(
+      name: name, position: position, placemark: placemark, verbose: verbose);
+}
+
+GeoPoint _geoPointFromPosition(
+    {@required Position position,
+    @required String name,
+    @required Placemark placemark,
+    @required bool verbose}) {
+  GeoPoint geoPoint;
   String number;
   String street;
   String locality;
@@ -66,15 +72,15 @@ Future<GeoPoint> _geoPointFromPosition(
   String region;
   String country;
 
-  String slug = _slugify.slugify(name);
-  int timestamp = position.timestamp.millisecondsSinceEpoch;
-  double latitude = position.latitude;
-  double longitude = position.longitude;
-  double altitude = position.altitude;
-  double speed = position.speed;
-  double accuracy = position.accuracy;
-  double speedAccuracy = position.speedAccuracy;
-  double heading = position.heading;
+  final slug = _slugify.slugify(name);
+  final timestamp = position.timestamp.millisecondsSinceEpoch;
+  final latitude = position.latitude;
+  final longitude = position.longitude;
+  final altitude = position.altitude;
+  final speed = position.speed;
+  final accuracy = position.accuracy;
+  final speedAccuracy = position.speedAccuracy;
+  final heading = position.heading;
   if (placemark != null) {
     number = placemark.subThoroughfare;
     street = placemark.thoroughfare;
@@ -106,6 +112,5 @@ Future<GeoPoint> _geoPointFromPosition(
   if (verbose) {
     print(geoPoint.toString());
   }
-
   return geoPoint;
 }
