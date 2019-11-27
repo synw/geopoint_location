@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.0
+
+- Update dependencies
+- Use strict analysis options
+- Add position stream management
+
 ## 0.3.1
 
 Update dependencies
