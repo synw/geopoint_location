@@ -22,9 +22,7 @@ Get [Geopoint](https://github.com/synw/geopoint) data from Geolocator [Position]
 
    StreamSubscription<GeoPoint> _sub;
    final _loc = LocationStream().initGeoPointStream();
-   _sub = _loc.geoPointStream.listen((pos) => setState(() {
-         print("Position update $pos");
-      }));
+   _sub = _loc.geoPointStream.listen((pos) => print("Position update $pos"));
    //_sub.cancel();
    ```
 
