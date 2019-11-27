@@ -14,7 +14,7 @@ Get [Geopoint](https://github.com/synw/geopoint) data from Geolocator [Position]
       name: "Current position", withAddress: true);
    ```
 
-## Position stream
+## Positions stream
 
    ```dart
    import 'package:geopoint/geopoint.dart';
